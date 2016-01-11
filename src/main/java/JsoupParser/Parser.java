@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 
 /**
@@ -19,17 +20,16 @@ public class Parser {
         this.link = link;
     }
 
-    public String[] findLinks() throws IOException {
+    public HashSet<String> findLinks() throws IOException {
         Document document = Jsoup.connect(link).userAgent("Mozilla").data("name", "jsoup").get();
         Elements elements = document.getElementsByTag("a");
-        String[] strElem = new String[elements.size()];
+        HashSet<String> links = new HashSet<String>(elements.size());
         int i = 0;
         for(Element item : elements) {
-            strElem[i] = i + " Link :" + item.attr("abs:href") + " Inner text: " + trim(item.text(), 35);
+            links.add(item.attr("abs:href").trim());
             i++;
         }
-
-        return strElem;
+        return links;
     }
 
     private static String trim(String s, int width) {
