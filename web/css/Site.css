@@ -1,0 +1,155 @@
+@font-face {
+    font-family: "Exo-Regular";
+    src: url(../fonts/exo/Exo-Regular.otf) format("truetype");
+    /*src: url(../fonts/exo/Exo-Thin.otf) format("truetype");*/
+}
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+html {
+	background: url(../images/demo-1-bg.jpg) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #383a3c;
+	font-weight: 400;
+	font-size: 1em;
+	font-family: 'Exo-Regular', Calibri, Arial, sans-serif;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
+
+
+.title {
+    position: absolute;
+	margin: 0;
+	padding: 0;
+	color: #f9f1e9;
+	text-align: center;
+	top: 40%;
+	left: 50%;
+	-webkit-transform: translate3d(-50%,-50%,0);
+	transform: translate3d(-50%,-50%,0);
+	text-transform: uppercase;
+	font-size: 4.0em;
+	letter-spacing: 0.2em;
+	cursor: default;
+}
+
+.title .thin {
+	font-weight: 100;
+}
+
+.form-input {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 55%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.form-input>form>input {
+	background: transparent;
+    color: white;
+	border: 2px solid #f9f1e9;
+	width: 450px;
+	padding: 10px 15px;
+	text-transform: uppercase;
+	text-align: center;
+	border-radius: 2px;
+}
+
+.form-input>form>input:hover {
+	background: #f9f1e9;
+	transition: 0.4s all;
+    color: black;
+}
+
+.form-input>form>input:focus {
+	background: #f9f1e9;
+    color: black;
+}
+
+.go-button {
+	color: #f9f1e9;
+	border: 1px solid #f9f1e9;
+	border-radius: 2px;
+	background: transparent;
+	padding: 10px 95px;
+}
+
+.go-block {
+	position: absolute;
+	bottom: -150%;
+	left: 25%;
+}
+
+.hovicon.effect-5 {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 5);
+    overflow: hidden;
+    -webkit-transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    -moz-transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.hovicon.effect-5:after {
+    display: none;
+}
+.hovicon.effect-5:hover {
+    background: rgba(255, 255, 255, 0.53);
+    color: black;
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3);
+}
+.hovicon.effect-5:hover i {
+    color: black;
+}
+.hovicon.effect-5.sub-a:hover:before {
+    -webkit-animation: toRightFromLeft 0.3s forwards;
+    -moz-animation: toRightFromLeft 0.3s forwards;
+    animation: toRightFromLeft 0.3s forwards;
+}
+@-webkit-keyframes toRightFromLeft {
+    49% {
+        -webkit-transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes toRightFromLeft {
+    49% {
+        -moz-transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        -moz-transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@keyframes toRightFromLeft {
+    49% {
+        transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
