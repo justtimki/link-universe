@@ -1,6 +1,8 @@
 package filters;
 
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by timki on 09.01.2016.
@@ -17,7 +19,7 @@ public class LinkFilter {
     public HashSet<String> getValidWebsiteLinks() {
         validWebsiteLinks = new HashSet<String>();
         for (String link : websiteLinks) {
-            if (!isEmptyLink(link)) {
+            if (!isEmptyLink(link) && isLink(link)) {
                 validWebsiteLinks.add(link);
             }
         }
@@ -25,13 +27,17 @@ public class LinkFilter {
     }
 
     private boolean isEmptyLink(String link) {
-        for(int i = 0; i < link.length(); i++) {
-            if(link.charAt(i) != ' ' && link.charAt(i) != '\r') {
-                return false;
-            }
-        }
-        return true;
+        Pattern p = Pattern.compile("\\s+ | \\r+");
+        Matcher m = p.matcher(link);
+        return m.matches();
     }
+
+    private boolean isLink(String link) {
+        Pattern p = Pattern.compile("\\s*((http://)|(https://)).+");
+        Matcher m = p.matcher(link);
+        return m.matches();
+    }
+
 
     //TODO create another filter methods
 }
