@@ -19,18 +19,18 @@ public class LinkFilter {
     public HashSet<String> getValidWebsiteLinks() {
         validWebsiteLinks = new HashSet<String>();
         for (String link : websiteLinks) {
-            if (!isEmptyLink(link) && isLink(link)) {
+            if (isLink(link) && isNewLink(link)) {
                 validWebsiteLinks.add(link);
             }
         }
         return validWebsiteLinks;
     }
 
-    private boolean isEmptyLink(String link) {
+    /*private boolean isEmptyLink(String link) {
         Pattern p = Pattern.compile("\\s+ | \\r+");
         Matcher m = p.matcher(link);
         return m.matches();
-    }
+    }*/
 
     private boolean isLink(String link) {
         Pattern p = Pattern.compile("\\s*((http://)|(https://)).+");
@@ -38,6 +38,12 @@ public class LinkFilter {
         return m.matches();
     }
 
+    private boolean isNewLink(String link) {
+        for (String validLink : validWebsiteLinks) {
+            if (link.equals(validLink)) return false;
+        }
+        return true;
+    }
 
     //TODO create another filter methods
 }
