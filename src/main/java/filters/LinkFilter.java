@@ -12,11 +12,13 @@ public class LinkFilter {
     private HashSet<String> websiteLinks;
     private HashSet<String> validWebsiteLinks;
 
+
     public LinkFilter(HashSet<String> websiteLinks) {
         this.websiteLinks = websiteLinks;
     }
 
     public HashSet<String> getValidWebsiteLinks() {
+        //String mainLink = "http://kino-dom.org";
         validWebsiteLinks = new HashSet<String>();
         for (String link : websiteLinks) {
             if (isLink(link) && isNewLink(link)) {
@@ -33,7 +35,7 @@ public class LinkFilter {
     }*/
 
     private boolean isLink(String link) {
-        Pattern p = Pattern.compile("\\s*((http://)|(https://)).+");
+        Pattern p = Pattern.compile("\\s*(https?://).+");
         Matcher m = p.matcher(link);
         return m.matches();
     }
@@ -44,6 +46,14 @@ public class LinkFilter {
         }
         return true;
     }
+
+    private boolean isInternalLink(String checkLink, String mainLink) {
+        String[] nameCheckLink = checkLink.split("/");
+        String[] nameMainLink = mainLink.split("/");
+        //System.out.println(nameCheckLink[0]);
+        return !nameMainLink[2].toString().equals(nameCheckLink[2].toString());
+    }
+
 
     //TODO create another filter methods
 }
