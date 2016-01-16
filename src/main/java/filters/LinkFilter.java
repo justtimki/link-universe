@@ -50,7 +50,6 @@ public class LinkFilter {
     private boolean isInternalLink(String checkLink, String mainLink) {
         String[] nameCheckLink = checkLink.split("/");
         String[] nameMainLink = mainLink.split("/");
-        //System.out.println(nameCheckLink[0]);
         return !nameMainLink[2].toString().equals(nameCheckLink[2].toString());
     }
 
