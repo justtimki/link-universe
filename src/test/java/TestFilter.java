@@ -16,7 +16,7 @@ public class TestFilter {
     public void testGetValidLinks() throws IOException {
         Parser parser = new Parser("http://www.pixic.ru/");
         HashSet<String> allLinks = parser.findLinks();
-        LinkFilter linkFilter = new LinkFilter(allLinks);
+        LinkFilter linkFilter = new LinkFilter("http://www.pixic.ru/", allLinks);
         HashSet<String> validLinks = linkFilter.getValidWebsiteLinks();
         for (String link : validLinks) {
             assertNotEquals(" ", link); //TODO tests another methods

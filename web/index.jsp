@@ -19,6 +19,7 @@
 
 <div class="form-input">
     <form action="controller" method="post">
+        <input type="hidden" name="command" value="process_link">
         <input type="text" name="linkField" placeholder="enter your link here">
         <span class="go-block hovicon effect-5 sub-a"><button class="go-button" type="submit">Go</button></span>
     </form>

@@ -1,13 +1,14 @@
 package controller;
 
-import JsoupParser.Parser;
+import command.Command;
+import helper.RequestHelper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 
 /**
@@ -27,11 +28,14 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws  ServletException, IOException {
-        String link = req.getParameter("linkField");
-        Parser parser = new Parser(link);
-        req.setAttribute("from", "Parse from " + link);
-        req.setAttribute("links", parser.findLinks());
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-        dispatcher.forward(req, resp);
+        String page = null;
+        Command command = RequestHelper.getInstance().defineCommand(req);
+        page = command.execute(req);
+        if (page != null) {
+            resp.sendRedirect(getServletContext().getContextPath() + page);
+        } else {
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 }

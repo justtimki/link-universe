@@ -24,10 +24,8 @@ public class Parser {
         Document document = Jsoup.connect(link).userAgent("Mozilla").data("name", "jsoup").get();
         Elements elements = document.getElementsByTag("a");
         HashSet<String> links = new HashSet<String>(elements.size());
-        int i = 0;
         for(Element item : elements) {
             links.add(item.attr("abs:href").trim());
-            i++;
         }
         return links;
     }

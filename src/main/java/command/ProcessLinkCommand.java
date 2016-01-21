@@ -12,8 +12,12 @@ import java.util.HashSet;
  */
 public class ProcessLinkCommand implements Command {
 
-    private static final String PARAM_LINK = "link";
+    private static final String PARAM_LINK = "linkField";
     private static final String PARAM_VALID_LINKS = "validLinks";
+    private static final String PARAM_MAIN_LINK = "mainLink";
+
+    private static final String LINK_PAGE_PATH = "/jsp/linkPage/linkPage.jsp";
+    private static final String MAIN_PAGE_PATH = "/index.jsp";
 
     public String execute(HttpServletRequest request) {
         String page = null;
@@ -24,15 +28,16 @@ public class ProcessLinkCommand implements Command {
         Parser parser = new Parser(link);
         try {
             allLinks = parser.findLinks();
-            filter = new LinkFilter(allLinks);
+            filter = new LinkFilter(link, allLinks);
             validLinks = filter.getValidWebsiteLinks();
-            request.setAttribute(PARAM_VALID_LINKS, validLinks);
+            request.getSession().setAttribute(PARAM_VALID_LINKS, validLinks);
+            request.getSession().setAttribute(PARAM_MAIN_LINK, link);
+            page = LINK_PAGE_PATH;
 
         } catch (IOException e) {
             e.printStackTrace();
+            page = MAIN_PAGE_PATH;
         }
-
-        //TODO redirect to page
 
         return page;
     }
