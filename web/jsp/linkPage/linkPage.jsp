@@ -9,12 +9,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/LinkPage.css">
+    <script src="${pageContext.request.contextPath}/js/LinkPage.js"></script>
     <title>Title</title>
 </head>
 <body>
 <h1>Parse from : ${mainLink}</h1>
-<c:forEach items="${validLinks}" var="link">
-    <p>${link}</p>
-</c:forEach>
+<div class="planet-container">
+    <c:forEach items="${validLinks}" var="link">
+        <div class="planet">
+            <a href="#">${link}
+                <script type="text/javascript"> setCircleSize("${link}")</script>
+            </a>
+        </div>
+    </c:forEach>
+</div>
 </body>
 </html>
+

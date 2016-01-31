@@ -1,0 +1,19 @@
+.planet a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    left: 0px;
+    top: 20px;
+    word-wrap: break-word;
+}
+
+.planet {
+    text-align: center;
+    background: grey;
+    padding: 10px 10px;
+    /*width: 60px;*/
+    /*height: 60px;*/
+    /*border-radius: 80px;*/
+    display: inline-block;
+    margin: 5px 15px;
+}
